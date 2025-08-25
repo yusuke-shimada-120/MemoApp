@@ -1,18 +1,25 @@
+import { defineConfig } from "eslint/config"
+import jsPlugin from "@eslint/js"
+import tsPlugin from "typescript-eslint"
+import reactConfig from "eslint-plugin-react/configs/recommended.js"
 import globals from "globals"
-import pluginJs from "@eslint/js"
-import tseslint from "typescript-eslint"
-import pluginReactConfig from "eslint-plugin-react/configs/recommended.js"
 
-export default [
+// TypeScript 設定が存在するか安全に確認
+const tsConfigs = tsPlugin.configs?.recommended ?? []
+
+export default defineConfig([
   {
     languageOptions: {
-      globals: globals.node
+      globals: globals?.node ?? {}
     }
   },
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  pluginReactConfig,
-  // rules ここから -----------------------
+  // JavaScript 推奨設定
+  jsPlugin.configs?.recommended ?? {},
+  // TypeScript 推奨設定（存在する場合のみ展開）
+  ...tsConfigs,
+  // React 推奨設定
+  reactConfig ?? {},
+  // カスタムルール
   {
     rules: {
       "react/react-in-jsx-scope": 0,
@@ -20,5 +27,4 @@ export default [
       "comma-dangle": [2, "never"]
     }
   }
-  // rules ここまで -----------------------
-]
+])
