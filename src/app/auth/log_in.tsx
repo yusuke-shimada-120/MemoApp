@@ -24,7 +24,8 @@ const Login = () => {
           autoCapitalize='none'
           keyboardType='email-address'
           placeholder='Email Address'
-          textContentType='emailAddress'/>
+          textContentType='emailAddress'
+          />
           <TextInput
           style={styles.input}
           value={password}
@@ -32,7 +33,8 @@ const Login = () => {
           autoCapitalize='none'
           secureTextEntry
           placeholder='Password'
-          textContentType='password'/>
+          textContentType='password'
+          />
           <Button label='Submit' onPress={handlePress}/>
           <View style={styles.footer}>
             <Text style={styles.footerText}>Not registered</Text>
