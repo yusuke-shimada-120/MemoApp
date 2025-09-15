@@ -4,5 +4,5 @@
     "strict": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "App.tsx"]
+  "include": ["src", "types", "App.tsx"]
 }
